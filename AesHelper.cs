@@ -5,14 +5,14 @@ using System.Security.Cryptography;
 // ReSharper disable once CheckNamespace
 namespace NuGet.Modules
 {
-    public class AesHelper
+    public static class AesHelper
     {
         private const int IvLength = 16;
         private const int SaltLength = 8;
         private const int KeyLength = 32;
         private const int IterationCount = 10000;
 
-        public byte[] Encrypt(byte[] data, string password)
+        public static byte[] Encrypt(byte[] data, string password)
         {
             var iv = CreateBytes(IvLength);
             var salt = CreateBytes(SaltLength);
@@ -29,7 +29,7 @@ namespace NuGet.Modules
             }
         }
 
-        public byte[] Decrypt(byte[] data, string password)
+        public static byte[] Decrypt(byte[] data, string password)
         {
             var iv = new byte[IvLength];
             var salt = new byte[SaltLength];
@@ -64,6 +64,5 @@ namespace NuGet.Modules
                 return data;
             }
         }
- 
     }
 }
